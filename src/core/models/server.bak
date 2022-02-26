@@ -1,8 +1,8 @@
 const express = require('express');
 
-const TestController          = require('../controllers/test-controller');
-const AuthController          = require('../controllers/auth-controller');
-const UserController          = require('../controllers/user-controller');
+const TestController = require('../controllers/test-controller');
+const AuthController = require('../controllers/auth-controller');
+const UserController = require('../controllers/user-controller');
 
 class Server {
     constructor() {
