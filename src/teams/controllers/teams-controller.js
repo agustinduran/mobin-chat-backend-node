@@ -2,9 +2,8 @@ const teamsService    = require('../services/teams-service');
 const teamsRepository = require('../repositories/teams-mysql-repository');
 
 exports.getAll = async (req, res) => {
-    console.log("get all teams");
     const teams = await teamsService.getAll(teamsRepository);
-    req.status(200).json(teams);
+    res.status(200).json(teams);
 };
 
 exports.getById = async (req, res) => {
@@ -15,9 +14,27 @@ exports.getById = async (req, res) => {
 
     }
 
-    const team = await teamsService.getTeamById(teamRepository, id);
+    const team = await teamsService.getTeamById(teamsRepository, id);
 
     if (team == false) {
         res.status(404).json({ msg: "Equipo no existente" });
     }
+};
+
+exports.save = async (req, res) => {
+    const {name, fundation_date} = req.body;
+
+    // TODO: Middleware
+    if (!name || !fundation_date) {
+        res.status(404).json({ msg: "Todos los campos son obligatorios" });
+    }
+
+    const newTeam = {
+        name,
+        fundation_date
+    };
+
+    const team = await teamsService.saveTeam(teamsRepository, newTeam);
+
+    res.status(201).json(team);
 };

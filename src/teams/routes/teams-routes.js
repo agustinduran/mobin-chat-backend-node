@@ -6,4 +6,6 @@ router.get('/', teamsController.getAll);
 
 router.get('/:id', teamsController.getById);
 
+router.post('/', teamsController.save);
+
 module.exports = router;

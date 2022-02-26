@@ -12,6 +12,10 @@ app.get('/', (req, res) => {
 const teamsRoutes = require('./teams/routes/teams-routes');
 app.use('/equipos', teamsRoutes);
 
+const errorHandler = require('./error-handler');
+// Middleware global
+app.use(errorHandler);
+
 app.listen(config.server.port, () => {
     console.log(`listening on port ${config.server.port}`);
 });

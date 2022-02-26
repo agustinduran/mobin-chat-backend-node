@@ -1,7 +1,15 @@
 exports.getAll = async () => {
-    return [];
+    return await [];
 };
 
 exports.getById = async (id) => {
-    return [];
+    return await  [];
+}
+
+exports.getByName = async (name) => {
+    return await [];
+}
+
+exports.save = async (team) => {
+    return await [];
 }
