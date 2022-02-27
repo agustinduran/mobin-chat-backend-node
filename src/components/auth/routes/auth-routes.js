@@ -3,8 +3,8 @@ const router = express.Router();
 
 const authController = require('../controllers/auth-controller');
 
-const hasValidRegister = require('../middleware/has-valid-register');
-const hasValidLogin    = require('../middleware/has-valid-login');
+const hasValidRegister = require('../middlewares/has-valid-register');
+const hasValidLogin    = require('../middlewares/has-valid-login');
 
 router.post('/login', hasValidLogin, authController.login);
 router.post('/register', hasValidRegister, authController.register);

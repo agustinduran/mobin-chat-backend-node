@@ -1,4 +1,4 @@
-const { config } = require('../../config');
+const { config } = require('../../../config')
 var jwt = require('jsonwebtoken');
 
 exports.generateToken = async (user) => {

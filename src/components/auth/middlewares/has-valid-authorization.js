@@ -1,4 +1,4 @@
-const { config } = require('../../config');
+const { config } = require('../../../config');
 var jwt = require('jsonwebtoken');
 
 const hasValidAuthorization = (req, res, next) => {

@@ -10,15 +10,15 @@ app.get('/', (req, res) => {
 });
 
 // AUTH
-const authRoutes = require('./auth/routes/auth-routes');
+const authRoutes = require('./components/auth/routes/auth-routes');
 app.use('/auth', authRoutes);
 
 // TEAMS
-const teamsRoutes = require('./teams/routes/teams-routes');
+const teamsRoutes = require('./components/teams/routes/teams-routes');
 app.use('/equipos', teamsRoutes);
 
 // catch 404 and forward to error handler
-const { error404, errorCatcher } = require('./core/middlewares/error-handler');
+const { error404, errorCatcher } = require('./components/core/middlewares/error-handler');
 app.use(error404);
 app.use(errorCatcher);
 
