@@ -17,17 +17,12 @@ app.use('/auth', authRoutes);
 const teamsRoutes = require('./teams/routes/teams-routes');
 app.use('/equipos', teamsRoutes);
 
-const errorHandler = require('./error-handler');
-// Middleware global
-app.use(errorHandler);
+// catch 404 and forward to error handler
+const { error404, errorCatcher } = require('./core/middlewares/error-handler');
+app.use(error404);
+app.use(errorCatcher);
 
 app.listen(config.server.port, () => {
     console.log(`listening on port ${config.server.port}`);
 });
-
-// SERVER
-// const Server = require('./src/core/models/server');
-
-// const server = new Server();
-// server.listen();
 
