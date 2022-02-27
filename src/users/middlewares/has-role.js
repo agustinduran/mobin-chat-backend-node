@@ -1,4 +1,4 @@
-const users  = require('../models/user');
+const users  = require('../../core/models/user');
 
 const hasRoleAdmin = (req, res, next) => {
     const authorizationUserId = Number.parseInt(req.headers['authorization']);

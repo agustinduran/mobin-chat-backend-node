@@ -10,5 +10,8 @@ exports.config = {
     },
     server: {
         port: process.env.SERVER_PORT || 3000,
+    },
+    keys: {
+        jwt: process.env.KEY_JWT || '$3CR3T!',
     }
 };
