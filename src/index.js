@@ -9,6 +9,15 @@ app.use(cors());
 const helmet = require('helmet');
 app.use(helmet());
 
+const db = require('./database/connection');
+(async () => {
+    try {
+        await db.authenticate();
+    } catch (error) {
+        throw new Error(error);
+    }
+})();
+
 // CORE
 app.get('/', (req, res) => {
     res.send('Hello World');
@@ -18,9 +27,13 @@ app.get('/', (req, res) => {
 const authRoutes = require('./components/auth/routes/auth-routes');
 app.use('/auth', authRoutes);
 
+// USERS
+const usersRoutes = require('./components/users/routes/users-routes');
+app.use('/users', usersRoutes);
+
 // TEAMS
 const teamsRoutes = require('./components/teams/routes/teams-routes');
-app.use('/equipos', teamsRoutes);
+app.use('/teams', teamsRoutes);
 
 // catch 404 and forward to error handler
 const { error404, errorCatcher } = require('./components/core/middlewares/error-handler');

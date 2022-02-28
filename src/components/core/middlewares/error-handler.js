@@ -1,5 +1,5 @@
 const error404 = (req, res, next) => {
-    next(createError(404));
+    res.status(404).send({success: false, message: 'No existe ese recurso'});
 };
 
 const errorCatcher = (err, req, res, next) => {

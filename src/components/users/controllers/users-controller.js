@@ -25,3 +25,13 @@ exports.getById = async (req, res) => {
         return res.status(403).json({ message: 'No tiene permiso solicitado para acceder al recurso' });
     }
 };
+
+// exports.save = async (req, res) => {
+//     try {
+//         // const {username, password, email, name, surname, phone} = req.body;
+//         const newUser = usersService.save(usersRepository, req.body);
+//         return res.status(200).json(newUser);
+//     } catch(error) {
+//         return res.status(403).json({ message: 'No tiene permiso solicitado para acceder al recurso' });
+//     }
+// };
