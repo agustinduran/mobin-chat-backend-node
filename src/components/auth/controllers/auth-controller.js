@@ -15,11 +15,14 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
     try {
+        // TODO: DONT SAVE SAME EMAIL OR USERNAME
         const newUser = await usersService.saveUser(usersRepository, req.body);
         if (newUser) return res.status(201).json({ success: true, user: newUser });
         else return res.status(500).json({ success: false, user: {}, message: 'Error en el servidor' });
     } catch(error) {
-        console.log(error);
-        return res.status(403).json({ success: false, message: 'No tiene permiso solicitado para acceder al recurso' });
+        if (error.name === 'SequelizeUniqueConstraintError')
+            return res.status(403).json({ success: false, message: 'Usuario ya existente' });
+        else
+            return res.status(500).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
     }
 };
