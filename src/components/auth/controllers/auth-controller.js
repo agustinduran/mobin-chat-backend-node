@@ -1,5 +1,4 @@
 const authService     = require('../services/auth-service');
-const authRepository  = require('../repositories/auth-mysql-repository');
 
 const usersRepository = require('../../users/repositories/users-mysql-repository');
 const usersService    = require('../../users/services/users-service');
