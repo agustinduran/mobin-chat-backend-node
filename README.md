@@ -17,6 +17,7 @@ Proyecto realizado por Agustín Durán
 * Arquitectura Hexagonal DDD
 * JWT (Json Web Tokens)
 * BCrypt para cifrado de contraseñas
+* Metodología TDD. Pruebas Automatizadas con Jest y Supertest
 
 ## Instalación
 

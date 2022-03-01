@@ -40,7 +40,8 @@ const { error404, errorCatcher } = require('./components/core/middlewares/error-
 app.use(error404);
 app.use(errorCatcher);
 
-app.listen(config.server.port, () => {
+const server = app.listen(config.server.port, () => {
     console.log(`listening on port ${config.server.port}`);
 });
 
+module.exports = { app, server };

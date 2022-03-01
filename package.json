@@ -4,9 +4,9 @@
     "description": "",
     "main": "./src/index.js",
     "scripts": {
-        "start": "node ./src/index.js",
-        "dev": "nodemon ./src/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "NODE_ENV=production node ./src/index.js",
+        "dev": "NODE_ENV=dev nodemon ./src/index.js",
+        "test": "NODE_ENV=test jest --verbose --silent --detectOpenHandles"
     },
     "repository": {
         "type": "git",
@@ -19,7 +19,9 @@
     },
     "homepage": "https://github.com/agustinduran/promiedos-fueguino-backend#readme",
     "devDependencies": {
-        "nodemon": "^2.0.12"
+        "jest": "^27.5.1",
+        "nodemon": "^2.0.12",
+        "supertest": "^6.2.2"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
