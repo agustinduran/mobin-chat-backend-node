@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const User = require('../models/user');
 
 exports.getAll = async () => {
@@ -20,5 +21,11 @@ exports.save = async (user) => {
         name: user.name,
         surname: user.surname,
         phone: user.phone
+    });
+}
+
+exports.getByUsernameOrEmail = async (username) => {
+    return await User.findOne({ 
+        where: {[Op.or]: [{ username: username }, { email: username }] }
     });
 }
