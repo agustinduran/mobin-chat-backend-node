@@ -5,7 +5,21 @@ const usersRepository = require('../../users/repositories/users-mysql-repository
 const usersService    = require('../../users/services/users-service');
 
 exports.login = async (req, res) => {
-    const token = await authService.validateCredentials(authRepository, req.body.username, req.body.password);
+    const user = await usersService.getUserByUsername(usersRepository, req.body.username);
+    if (user == false) {
+        return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
+    }
+
+    const hasValidPassword = authService.hasValidPassword(req.body.password, user.password);
+    if (hasValidPassword === false) {
+        return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
+    }
+
+    if (user.active != 1) {
+        return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
+    }
+
+    const token = authService.generateToken(user);
     if (token) {
         return res.status(201).json({ success: true, token: token});
     } else {
@@ -15,8 +29,7 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
     try {
-        // TODO: DONT SAVE SAME EMAIL OR USERNAME
-        const newUser = await usersService.saveUser(usersRepository, req.body);
+        const newUser = await usersService.createUser(usersRepository, req.body);
         if (newUser) return res.status(201).json({ success: true, user: newUser });
         else return res.status(500).json({ success: false, user: {}, message: 'Error en el servidor' });
     } catch(error) {

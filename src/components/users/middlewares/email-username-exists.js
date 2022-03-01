@@ -1,15 +1,11 @@
 const usersRepository = require('../../users/repositories/users-mysql-repository');
 
-const usernameOrEmailExists = async (username = '') => {
-    const user = await usersRepository.getByUsernameOrEmail(username);
-    if (user) {
-        if (user.username === username ) {
-            throw new Error("Usuario ya registrado");
-        } else {
-            throw new Error("Email ya registrado");
-        }
-    }
-};
+// const usernameOrEmailNotExists = async (username = '') => {
+//     const user = await usersRepository.getByUsernameOrEmail(username);
+//     if (user == false) {
+//         throw new Error("Credenciales inválidas");
+//     }
+// };
 
 const usernameExists = async (username = '') => {
     const user = await usersRepository.getByUsernameOrEmail(username);
@@ -25,4 +21,4 @@ const emailExists = async (email = '') => {
     }
 };
 
-module.exports = { usernameOrEmailExists, usernameExists, emailExists };
+module.exports = { usernameExists, emailExists };

@@ -1,7 +1,18 @@
-const { config } = require('../../../config')
+const { config } = require('../../../config');
+var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
-exports.generateToken = async (user) => {
+exports.generateToken = (user) => {
     var token = jwt.sign({id: user.id, name: user.username}, config.keys.jwt);
     return token;
+};
+
+exports.validatePassword = (loginPassword, encriptedPassword) => {
+    return bcrypt.compareSync(loginPassword, encriptedPassword);
+};
+
+exports.encriptPassword = (password) => {
+    const salt = bcrypt.genSaltSync();
+    const encriptPasword = bcrypt.hashSync(password, salt);
+    return encriptPasword;
 };

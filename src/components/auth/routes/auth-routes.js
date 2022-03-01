@@ -4,15 +4,12 @@ const router = express.Router();
 
 const authController = require('../controllers/auth-controller');
 
-const hasValidRequest       = require('../../core/middlewares/error-request-handler');
-const { usernameOrEmailExists, usernameExists, emailExists } = require('../../users/middlewares/email-username-exists');
+const hasValidRequest                 = require('../../core/middlewares/error-request-handler');
+const { usernameExists, emailExists } = require('../../users/middlewares/email-username-exists');
 
 router.post('/login', [
     check('username', 'Username es requerido').not().isEmpty(),
-    check('username').custom(usernameOrEmailExists),
     check('password', 'Contraseña es requerida').not().isEmpty(),
-    check('password', 'Contraseña debe ser mayor a 6 caracteres').isLength({ min: 6 }),
-    check('password', 'Contraseña debe ser menor a 20 caracteres').isLength({ max: 20 }),
     hasValidRequest
 ], authController.login);
 

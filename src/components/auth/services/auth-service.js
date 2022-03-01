@@ -1,8 +1,14 @@
 const authUtils = require('../utils/auth-utils');
 
-exports.validateCredentials = async (repository, username, password) => {
-    // const validCredentials = repository.getToken(username, password);
-    // TODO: id obtengo de la consulta anterior
-    var token = authUtils.generateToken({username: username, id: 2});    
-    return token;
+exports.encriptPassword = (password) => {
+    return authUtils.encriptPassword(password);
 };
+
+exports.hasValidPassword = (loginPassword, encriptPasword) => {
+    return authUtils.validatePassword(loginPassword, encriptPasword);
+};
+
+exports.generateToken = (user) => {
+    var token = authUtils.generateToken(user);
+    return token;
+}
