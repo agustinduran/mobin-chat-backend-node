@@ -5,7 +5,7 @@ const usersService    = require('../../users/services/users-service');
 
 exports.login = async (req, res) => {
     const user = await usersService.getUserByUsername(usersRepository, req.body.username);
-    if (user == false) {
+    if (!user) {
         return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
 
