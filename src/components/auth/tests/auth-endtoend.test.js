@@ -1,21 +1,22 @@
-const supertest = require('supertest');
+const request = require('supertest');
 const { app, server } = require('../../../index');
 
-const api = supertest(app);
+const api = request(app);
 
 describe('POST /auth/login', () => {
     test('Login by username successful', async () => {
         const body = {
-            username: "agustin",
+            username: "agustin2",
             password: "123456"
         };
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(201);
-            // TODO: Validar que devuelva el token y el success true
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(201);
+        expect(response.body.success).toBeTruthy();
+        expect(response.body.token).toBeDefined();
     });
 
     test('Login by email successful', async () => {
@@ -23,18 +24,19 @@ describe('POST /auth/login', () => {
             username: "agustinedura2n@gmail.com",
             password: "123456"
         };
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(201);
-            // TODO: Validar que devuelva el token y el success true
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(201);
+        expect(response.body.success).toBeTruthy();
+        expect(response.body.token).toBeDefined();
     });
 
     test('Login with password wrong using username', async () => {
         const body = {
-            username: "agustin",
+            username: "agustin2",
             password: "123456789"
         };
         await api
@@ -90,39 +92,42 @@ describe('POST /auth/login', () => {
 
     test('Login without body', async () => {
         const body = {};
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(400)
-            .expect({ success: false, message: 'Credenciales inválidas' });
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(400)
+        expect(response.body.success).toBeFalsy();
+        expect(response.body.errors).toBeDefined();
     });
 
     test('Login without username', async () => {
         const body = {
             password: "123456789"
         };
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(400)
-            .expect({ success: false, message: 'Credenciales inválidas' });
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(400)
+        expect(response.body.success).toBeFalsy();
+        expect(response.body.errors).toBeDefined();
     });
 
     test('Login without password', async () => {
         const body = {
             username: "agustin"
         };
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(400)
-            .expect({ success: false, message: 'Credenciales inválidas' });
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(400)
+        expect(response.body.success).toBeFalsy();
+        expect(response.body.errors).toBeDefined();
     });
 
     test('Login with username empty', async () => {
@@ -130,13 +135,14 @@ describe('POST /auth/login', () => {
             username: "",
             password: "123456789"
         };
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(400)
-            .expect({ success: false, message: 'Credenciales inválidas' });
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(400)
+        expect(response.body.success).toBeFalsy();
+        expect(response.body.errors).toBeDefined();
     });
 
     test('Login with password empty', async () => {
@@ -144,13 +150,14 @@ describe('POST /auth/login', () => {
             username: "agustin",
             password: ""
         };
-        await api
-            .post('/auth/login')
-            .send(body)
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(400)
-            .expect({ success: false, message: 'Credenciales inválidas' });
+        const response = await 
+            api.post('/auth/login')
+               .send(body)
+               .set('Accept', 'application/json')
+               .expect('Content-Type', /json/);
+        expect(400)
+        expect(response.body.success).toBeFalsy();
+        expect(response.body.errors).toBeDefined();
     });
 
     // TODO: LOGIN WITH SQL INJECT
