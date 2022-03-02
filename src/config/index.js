@@ -9,6 +9,7 @@ exports.config = {
         database: process.env.DB_NAME     || 'promiedos_fueguino'
     },
     server: {
+        host: process.env.SERVER_HOST || 'localhost',
         port: process.env.SERVER_PORT || 3000,
     },
     keys: {

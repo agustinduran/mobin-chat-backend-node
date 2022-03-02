@@ -1,7 +1,28 @@
 const express = require('express');
 const { config } = require('./config');
+
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: "Promiedos Fueguino",
+            description: "Backend",
+            contact: {
+                name: "Agustín Durán"
+            },
+            servers: [`http://${config.server.host}:${config.server.port}1`]
+        }
+    },
+    apis: ['index.js']
+};
+
 const app = express();
 app.use(express.json());
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const cors = require('cors');
 app.use(cors());
