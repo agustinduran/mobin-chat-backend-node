@@ -1,5 +1,3 @@
-const users  = require('../../core/models/user');
-
 const hasRoleAdmin = (req, res, next) => {
     const authorizationUserId = Number.parseInt(req.headers['authorization']);
     const user = users.find((u) => u.id === authorizationUserId);
