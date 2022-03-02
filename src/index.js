@@ -19,9 +19,8 @@ const db = require('./database/connection');
 })();
 
 // CORE
-app.get('/api/', (req, res) => {
-    res.send('Hello World');
-});
+const coreRoutes = require('./components/core/routes/core-routes');
+app.use('/api', coreRoutes);
 
 // AUTH
 const authRoutes = require('./components/auth/routes/auth-routes');

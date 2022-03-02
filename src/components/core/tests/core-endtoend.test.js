@@ -6,9 +6,10 @@ const api = supertest(app);
 describe('Server general performance', () => {
     test('¡Hello World! are returned as html', async () => {
         await api
-            .get('/api/')
+            .get('/api')
             .expect(200)
-            .expect('Content-Type', /text\/html/);
+            .expect('Content-Type', /json/)
+            .expect({ success: true, message: '¡Hello World!' });
     });
 
     test('Get 404 Not Found for random resouce nonexistent', async () => {
