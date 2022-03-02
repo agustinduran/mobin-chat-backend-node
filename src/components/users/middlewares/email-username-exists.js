@@ -12,6 +12,8 @@ const usernameExists = async (username = '') => {
     if (user) {
         throw new Error("Usuario ya registrado");
     }
+
+    return true;
 };
 
 const emailExists = async (email = '') => {
@@ -19,6 +21,16 @@ const emailExists = async (email = '') => {
     if (user) {
         throw new Error("Email ya registrado");
     }
+
+    return true;
 };
 
-module.exports = { usernameExists, emailExists };
+const correctSamePasswords = (value, { req }) => {
+    if (value !== req.body.password) {
+        throw new Error('Las contraseñas no son iguales');
+    }
+
+    return true;
+};
+
+module.exports = { usernameExists, emailExists, correctSamePasswords };
