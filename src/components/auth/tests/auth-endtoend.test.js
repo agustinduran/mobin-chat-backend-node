@@ -17,7 +17,7 @@ beforeEach(async () => {
     });
 });
 
-describe('POST /auth/register', () => {
+describe('POST /api/auth/register', () => {
     test('Register successful', async () => {
         const body = {
             "username": "vbuterin",
@@ -29,7 +29,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349546546387"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -38,10 +38,10 @@ describe('POST /auth/register', () => {
         expect(response.body.user).toBeDefined();
     });
 
-    test('Register without body', async () => {
+    test('Try register without body', async () => {
         const body = {};
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -49,7 +49,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register without username', async () => {
+    test('Try register without username', async () => {
         const body = {
             "password": "123456",
             "password-confirmation": "123456",
@@ -59,7 +59,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349219546548"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -67,7 +67,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register without password', async () => {
+    test('Try register without password', async () => {
         const body = {
             "username": "snakamoto",
             "password-confirmation": "123456",
@@ -77,7 +77,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349219546548"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -85,7 +85,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register without password-confirmation', async () => {
+    test('Try register without password-confirmation', async () => {
         const body = {
             "username": "snakamoto",
             "password": "123456",
@@ -95,7 +95,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349219546548"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -103,7 +103,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register with differents password and password-confirmation', async () => {
+    test('Try register with differents password and password-confirmation', async () => {
         const body = {
             "username": "snakamoto",
             "password": "123456",
@@ -114,7 +114,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349219546548"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -122,7 +122,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register with passwords length less 6 characters', async () => {
+    test('Try register with passwords length less 6 characters', async () => {
         const body = {
             "username": "snakamoto",
             "password": "12345",
@@ -133,7 +133,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349219546548"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -141,7 +141,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register with invalid email', async () => {
+    test('Try register with an invalid email', async () => {
         const body = {
             "username": "snakamoto",
             "password": "123456",
@@ -152,7 +152,7 @@ describe('POST /auth/register', () => {
             "phone" : "5349219546548"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -160,7 +160,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register with a username busy', async () => {
+    test('Try register with an username busy', async () => {
         const body = {
             "username": "agustin",
             "password": "123456",
@@ -171,7 +171,7 @@ describe('POST /auth/register', () => {
             "phone" : "2964547877"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -179,7 +179,7 @@ describe('POST /auth/register', () => {
         expect(response.body.success).toBeFalsy();
     });
 
-    test('Register with a email busy', async () => {
+    test('Try register with an email busy', async () => {
         const body = {
             "username": "other-username",
             "password": "123456",
@@ -190,7 +190,7 @@ describe('POST /auth/register', () => {
             "phone" : "2964547877"
         };
         const response = await 
-            api.post('/auth/register')
+            api.post('/api/auth/register')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -200,14 +200,14 @@ describe('POST /auth/register', () => {
 
 });
 
-describe('POST /auth/login', () => {
+describe('POST /api/auth/login', () => {
     test('Login by username successful', async () => {
         const body = {
             username: "agustin",
             password: "123456"
         };
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -222,7 +222,7 @@ describe('POST /auth/login', () => {
             password: "123456"
         };
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -237,7 +237,7 @@ describe('POST /auth/login', () => {
             password: "123456789"
         };
         await api
-            .post('/auth/login')
+            .post('/api/auth/login')
             .send(body)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -251,7 +251,7 @@ describe('POST /auth/login', () => {
             password: "123456789"
         };
         await api
-            .post('/auth/login')
+            .post('/api/auth/login')
             .send(body)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -265,7 +265,7 @@ describe('POST /auth/login', () => {
             password: "123456789"
         };
         await api
-            .post('/auth/login')
+            .post('/api/auth/login')
             .send(body)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -279,7 +279,7 @@ describe('POST /auth/login', () => {
             password: "123456789"
         };
         await api
-            .post('/auth/login')
+            .post('/api/auth/login')
             .send(body)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -290,7 +290,7 @@ describe('POST /auth/login', () => {
     test('Login without body', async () => {
         const body = {};
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -304,7 +304,7 @@ describe('POST /auth/login', () => {
             password: "123456789"
         };
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -318,7 +318,7 @@ describe('POST /auth/login', () => {
             username: "agustin"
         };
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -333,7 +333,7 @@ describe('POST /auth/login', () => {
             password: "123456789"
         };
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);
@@ -348,7 +348,7 @@ describe('POST /auth/login', () => {
             password: ""
         };
         const response = await 
-            api.post('/auth/login')
+            api.post('/api/auth/login')
                .send(body)
                .set('Accept', 'application/json')
                .expect('Content-Type', /json/);

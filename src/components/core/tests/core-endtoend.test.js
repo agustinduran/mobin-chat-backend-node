@@ -6,14 +6,14 @@ const api = supertest(app);
 describe('Server general performance', () => {
     test('¡Hello World! are returned as html', async () => {
         await api
-            .get('/')
+            .get('/api/')
             .expect(200)
             .expect('Content-Type', /text\/html/);
     });
 
     test('Get 404 Not Found for random resouce nonexistent', async () => {
         await api
-            .get('/this-is-random-resource')
+            .get('/api/this-is-random-resource')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(404)

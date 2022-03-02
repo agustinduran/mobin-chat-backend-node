@@ -19,21 +19,21 @@ const db = require('./database/connection');
 })();
 
 // CORE
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     res.send('Hello World');
 });
 
 // AUTH
 const authRoutes = require('./components/auth/routes/auth-routes');
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // USERS
 const usersRoutes = require('./components/users/routes/users-routes');
-app.use('/users', usersRoutes);
+app.use('/api/users', usersRoutes);
 
 // TEAMS
 const teamsRoutes = require('./components/teams/routes/teams-routes');
-app.use('/teams', teamsRoutes);
+app.use('/api/teams', teamsRoutes);
 
 // catch 404 and forward to error handler
 const { error404, errorCatcher } = require('./components/core/middlewares/error-handler');
