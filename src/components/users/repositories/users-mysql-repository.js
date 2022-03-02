@@ -14,7 +14,7 @@ exports.getByName = async (name) => {
 }
 
 exports.save = async (user) => {
-    return await User.create({
+    const newUser = await User.create({
         username: user.username,
         password: user.password,
         email: user.email,
@@ -22,6 +22,9 @@ exports.save = async (user) => {
         surname: user.surname,
         phone: user.phone
     });
+    // Exclude password
+    delete newUser.dataValues.password;
+    return newUser;
 }
 
 exports.getByUsernameOrEmail = async (username) => {
