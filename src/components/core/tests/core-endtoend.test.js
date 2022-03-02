@@ -4,7 +4,7 @@ const { app, server } = require('../../../index');
 const api = supertest(app);
 
 describe('Server general performance', () => {
-    test('¡Hello World! are returned as html', async () => {
+    test('¡Hello World! are returned as json', async () => {
         await api
             .get('/api')
             .expect(200)
