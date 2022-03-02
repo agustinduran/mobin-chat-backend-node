@@ -1,4 +1,5 @@
 const error404 = (req, res, next) => {
+    // TODO: Hacer escalable los textos hardcodeados
     res.status(404).send({ success: false, message: 'El recurso solicitado no existe o fue eliminado' });
 };
 
