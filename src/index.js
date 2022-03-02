@@ -15,7 +15,7 @@ const swaggerOptions = {
             servers: [`http://${config.server.host}:${config.server.port}1`]
         }
     },
-    apis: ['index.js']
+    apis: ['./src/components/*/routes/*-routes.js']
 };
 
 const app = express();
