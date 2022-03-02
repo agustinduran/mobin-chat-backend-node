@@ -4,7 +4,7 @@ Proyecto realizado por Agustín Durán
 
 ## Tecnologías utilizadas
 
-### Sprint-1
+### Sprint-1: Arquitectura de Software
 * JavaScript
 * NodeJs
 * Express, Helmet, Cors
