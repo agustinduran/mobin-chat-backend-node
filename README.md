@@ -18,6 +18,13 @@ Proyecto realizado por Agustín Durán
 * JWT (Json Web Tokens)
 * BCrypt para cifrado de contraseñas
 * Metodología TDD. Pruebas Automatizadas con Jest y Supertest
+* Captura de datos en caché con Redis
+
+### Sprint-2: Infraestructura en la Nube [PENDIENTE]
+
+### Sprint-3: Migración [PENDIENTE]
+* Migrar a TypeScript
+* Migrar a Next.js
 
 ## Instalación
 
