@@ -4,7 +4,7 @@ const idParamIsInteger = (req, res, next) => {
     if (isInt) {
         next();
     } else {
-        res.status(422).json({ message: 'Id no es un número entero correcto' });
+        res.status(422).json({ success: false, message: 'Id no es un número entero correcto' });
     }
 };
 
