@@ -9,11 +9,21 @@ const swaggerOptions = {
         info: {
             title: 'Promiedos Fueguino',
             description: 'Backend',
+            version: config.version,
             contact: {
                 name: config.author
             },
             servers: [`http://${config.server.host}:${config.server.port}1`]
-        }
+        },
+        securityDefinitions: {
+            bearerAuth: {
+                type: 'apiKey',
+                name: 'authorization',
+                scheme: 'bearer',
+                in: 'header',
+            }
+        },
+        security: [ { bearerAuth: [] } ],
     },
     apis: ['./src/components/*/routes/*-routes.js']
 };
