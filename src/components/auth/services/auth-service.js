@@ -11,4 +11,4 @@ exports.hasValidPassword = (loginPassword, encriptPasword) => {
 exports.generateToken = (user) => {
     var token = authUtils.generateToken(user);
     return token;
-}
+};
