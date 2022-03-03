@@ -7,8 +7,8 @@ const hasValidAuthorization = (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1];
         const decode = jwt.verify(token, config.keys.jwt);
         // Save in the req for have a global state
-        req.userId = decode.id;
-        // TODO: add role, name
+        req.userId  = decode.id;
+        req.userRol = decode.rol;
         return next();
     } catch (err) {
         res.status(403).json({ success: false, message: 'No tiene el permiso solicitado para acceder al recurso' });

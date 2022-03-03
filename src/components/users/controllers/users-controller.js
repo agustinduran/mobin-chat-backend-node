@@ -9,9 +9,9 @@ exports.getAll = async (req, res) => {
 exports.getById = async (req, res) => {
     const id = Number.parseInt(req.params.id);
 
-    // He want to see their resource?
-    if (id != req.userId) {
-        // TODO: NEED ROLE ADMIN. Controlar rol, si no lo tiene echarlo al pingo
+    // He dont want to see their resource?
+    if (id != req.userId /*TODO: && req.userRol == ADMIN */) {
+        return res.status(403).send({ success: false, message: 'No tiene el permiso solicitado para acceder al recurso' })
     }
 
     const userFinded = await usersService.getUserById(usersRepository, id);

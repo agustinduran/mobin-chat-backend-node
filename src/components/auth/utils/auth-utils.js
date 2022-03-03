@@ -3,7 +3,7 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 exports.generateToken = (user) => {
-    var token = jwt.sign({id: user.id, name: user.username}, config.keys.jwt);
+    var token = jwt.sign({ id: user.id, rol: user.rol }, config.keys.jwt);
     return token;
 };
 

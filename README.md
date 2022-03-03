@@ -1,5 +1,4 @@
 # Promiedos Fueguino
-
 Proyecto realizado por Agustín Durán
 
 ## Tecnologías utilizadas
@@ -27,7 +26,6 @@ Proyecto realizado por Agustín Durán
 * Migrar a Next.js
 
 ## Instalación
-
 ```bash
 npm i
 npm run dev
