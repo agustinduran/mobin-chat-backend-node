@@ -10,7 +10,7 @@ const swaggerOptions = {
             title: 'Promiedos Fueguino',
             description: 'Backend',
             contact: {
-                name: 'Agustín Durán'
+                name: config.author
             },
             servers: [`http://${config.server.host}:${config.server.port}1`]
         }

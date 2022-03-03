@@ -7,12 +7,42 @@ const authController = require('../controllers/auth-controller');
 const hasValidRequest = require('../../core/middlewares/error-request-handler');
 const { usernameExists, emailExists, correctSamePasswords } = require('../../users/middlewares/email-username-exists');
 
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     description: Login
+ *     tags: [Auth]
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': true, 'token': '$3CR3T' }
+ */
 router.post('/login', [
     check('username', 'Usuario es requerido').not().isEmpty().trim().escape(),
     check('password', 'Contraseña es requerida').not().isEmpty().trim().escape(),
     hasValidRequest
 ], authController.login);
 
+/**
+ * @swagger
+ * /api/register:
+ *   post:
+ *     description: Create an user
+ *     tags: [Auth]
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': true, 'token': '$3CR3T' }
+ */
 router.post('/register', [
     check('username', 'Usuario es requerido').not().isEmpty().trim().escape(),
     check('username').custom(usernameExists),
