@@ -2,13 +2,20 @@ const { Op } = require('sequelize');
 const User = require('../models/user');
 
 exports.getAll = async () => {
-    return await [];
+    // TODO: Paginate
+    return await User.findAll({
+        attributes: { exclude: ['password'] }
+    });
 };
 
 exports.getById = async (id) => {
-    return await  [];
+    return await User.findOne({
+        where: { id: id },
+        attributes: { exclude: ['password'] }
+    });
 }
 
+// TODO: Should be more than one with same name
 exports.getByName = async (name) => {
     return await [];
 }
