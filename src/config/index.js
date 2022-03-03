@@ -1,7 +1,9 @@
 require('dotenv').config();
+const pkg = require('../../package.json');
 
 exports.config = {
-    version: '1.0.0',
+    version: pkg.version,
+    author: pkg.author,
     db: {
         host: process.env.DB_HOST         || 'localhost',
         port: process.env.DB_PORT         || '3306',
