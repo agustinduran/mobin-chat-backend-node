@@ -7,10 +7,10 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: "Promiedos Fueguino",
-            description: "Backend",
+            title: 'Promiedos Fueguino',
+            description: 'Backend',
             contact: {
-                name: "Agustín Durán"
+                name: 'Agustín Durán'
             },
             servers: [`http://${config.server.host}:${config.server.port}1`]
         }
