@@ -14,13 +14,42 @@ const { usernameExists, emailExists, correctSamePasswords } = require('../../use
  *     description: Login
  *     tags: [Auth]
  *     responses:
- *       '200':
+ *       '201':
  *         description: Success response
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               example: { 'success': true, 'token': '$3CR3T' }
+ *       '400':
+ *         description: Invalid body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: {'success': false, 'errors': 'hola'}
+ *       '401':
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': false, 'message': 'Credenciales inválidas' }
+ *     questBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: username or email
+ *                 example: agustineduran
+ *               password:
+ *                 type: string
+ *                 description: password
+ *                 example: 123456
  */
 router.post('/login', [
     check('username', 'Usuario es requerido').not().isEmpty().trim().escape(),
@@ -35,13 +64,54 @@ router.post('/login', [
  *     description: Create an user
  *     tags: [Auth]
  *     responses:
- *       '200':
+ *       '201':
  *         description: Success response
  *         content:
  *           application/json:
  *             schema:
+ *               $ref: '#/definitions/User'
+ *       '400':
+ *         description: Invalid body
+ *         content:
+ *           application/json:
+ *             schema:
  *               type: object
- *               example: { 'success': true, 'token': '$3CR3T' }
+ *               example: {'success': false, 'errors': '[array]'}
+ *     questBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: username
+ *                 example: agustineduran
+ *               email:
+ *                 type: string
+ *                 description: email
+ *                 example: agustineduran@gmail.com
+ *               password:
+ *                 type: string
+ *                 description: password
+ *                 example: 123456
+ *               password-confirmation:
+ *                 type: string
+ *                 description: password-confirmation
+ *                 example: 123456
+ *               name: 
+ *                 type: string
+ *                 description: name
+ *                 example: Agustín
+ *               surname: 
+ *                 type: string
+ *                 description: surname
+ *                 example: Duran
+ *               phone: 
+ *                 type: string
+ *                 description: phone
+ *                 example: 123456
  */
 router.post('/register', [
     check('username', 'Usuario es requerido').not().isEmpty().trim().escape(),
@@ -62,4 +132,20 @@ router.post('/register', [
     hasValidRequest
 ], authController.register);
 
+/**
+ * @swagger
+ * definitions:
+ *   User:
+ *     properties:
+ *       username:
+ *         type: string
+ *       email:
+ *         type: string
+ *       name:
+ *         type: string
+ *       surname:
+ *         type: string
+ *       phone:
+ *         type: string
+ */
 module.exports = router;
