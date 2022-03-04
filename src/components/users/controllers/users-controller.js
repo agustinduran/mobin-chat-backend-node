@@ -15,7 +15,7 @@ exports.getById = async (req, res) => {
     }
 
     const userFinded = await usersService.getUserById(usersRepository, id);
-    console.log(userFinded);
+
     if (userFinded) {
         return res.status(200).json({ success: true, user: userFinded });
     } else {
