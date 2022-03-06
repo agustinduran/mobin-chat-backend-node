@@ -12,23 +12,17 @@ const { verifyPermissionsGetAllUsers, verifyPermissionsGetOneUser } = require('.
  * @swagger
  * /api/users/:
  *   get:
- *     description: Get all users
+ *     summary: Get all users
  *     tags: [Users]
+ *     consumes:
+ *       application/json
+ *     produces:
+ *       application/json
  *     responses:
  *       '200':
  *         description: Success response
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': true, 'users': 'array' }
  *       '403':
  *         description: Forbidden access
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': false, 'message': 'No tiene el permiso solicitado para acceder al recurso' }
  */
 router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache, usersController.getAll);
 
@@ -36,37 +30,24 @@ router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache
  * @swagger
  * /api/users/{id}:
  *   get:
- *     description: Get an user
+ *     summary: Get an user
  *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: User id
+ *         required: true
+ *         type: integer
+ *         example: 1
  *     responses:
  *       '200':
  *         description: Success response
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': true, 'user': 'user' }
  *       '422':
- *         description: Id not its an integer
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': false, 'message': 'Id no es un número entero correcto' }
+ *         description: Id isn't an integer
  *       '403':
  *         description: Forbidden access
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': false, 'message': 'No tiene el permiso solicitado para acceder al recurso' }
  *       '404':
  *         description: Resource not found
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': false, 'message': 'El recurso solicitado no existe o fue eliminado' }
  */
 router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsGetOneUser, findInCache, usersController.getById);
 

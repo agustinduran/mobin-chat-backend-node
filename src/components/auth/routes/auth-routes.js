@@ -9,47 +9,35 @@ const { usernameExists, emailExists, correctSamePasswords } = require('../../use
 
 /**
  * @swagger
- * /api/login:
+ * /api/auth/login:
  *   post:
- *     description: Login
+ *     summary: Login
  *     tags: [Auth]
+ *     consumes:
+ *       application/json
+ *     produces:
+ *       application/json
+ *     parameters:
+ *       - in: "body"
+ *         name: "body"
+ *         required: true
+ *         schema:
+ *           properties:
+ *             username:
+ *               type: string
+ *               description: username or email
+ *               example: agustineduran
+ *             password:
+ *               type: string
+ *               description: password
+ *               example: 123456
  *     responses:
  *       '201':
  *         description: Success response
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': true, 'token': '$3CR3T' }
  *       '400':
  *         description: Invalid body
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: {'success': false, 'errors': 'hola'}
  *       '401':
  *         description: Invalid credentials
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: { 'success': false, 'message': 'Credenciales inválidas' }
- *     questBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 description: username or email
- *                 example: agustineduran
- *               password:
- *                 type: string
- *                 description: password
- *                 example: 123456
  */
 router.post('/login', [
     check('username', 'Usuario es requerido').not().isEmpty().trim().escape(),
@@ -59,59 +47,54 @@ router.post('/login', [
 
 /**
  * @swagger
- * /api/register:
+ * /api/auth/register:
  *   post:
- *     description: Create an user
+ *     summary: Create an user
  *     tags: [Auth]
+ *     consumes:
+ *       application/json
+ *     produces:
+ *       application/json
+ *     parameters:
+ *       - in: "body"
+ *         name: "body"
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             username:
+ *               type: string
+ *               description: username
+ *               example: agustineduran
+ *             email:
+ *               type: string
+ *               description: email
+ *               example: agustineduran@gmail.com
+ *             password:
+ *               type: string
+ *               description: password
+ *               example: 123456
+ *             password-confirmation:
+ *               type: string
+ *               description: password-confirmation
+ *               example: 123456
+ *             name: 
+ *               type: string
+ *               description: name
+ *               example: Agustín
+ *             surname: 
+ *               type: string
+ *               description: surname
+ *               example: Duran
+ *             phone: 
+ *               type: string
+ *               description: phone
+ *               example: 123456
  *     responses:
  *       '201':
  *         description: Success response
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/definitions/User'
  *       '400':
- *         description: Invalid body
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               example: {'success': false, 'errors': '[array]'}
- *     questBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 description: username
- *                 example: agustineduran
- *               email:
- *                 type: string
- *                 description: email
- *                 example: agustineduran@gmail.com
- *               password:
- *                 type: string
- *                 description: password
- *                 example: 123456
- *               password-confirmation:
- *                 type: string
- *                 description: password-confirmation
- *                 example: 123456
- *               name: 
- *                 type: string
- *                 description: name
- *                 example: Agustín
- *               surname: 
- *                 type: string
- *                 description: surname
- *                 example: Duran
- *               phone: 
- *                 type: string
- *                 description: phone
- *                 example: 123456
+ *         description: Invalid body    
  */
 router.post('/register', [
     check('username', 'Usuario es requerido').not().isEmpty().trim().escape(),
