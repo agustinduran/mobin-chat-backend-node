@@ -3,9 +3,10 @@ const router = express.Router();
 const usersController = require('../controllers/users-controller');
 
 // Middlewares
-const hasRoleAdmin          = require('../middlewares/has-role');
-const idParamIsInteger      = require('../middlewares/id-param-is-integer');
-const hasValidAuthorization = require('../../auth/middlewares/has-valid-authorization');
+const idParamIsInteger            = require('../middlewares/id-param-is-integer');
+const hasValidAuthorization       = require('../../auth/middlewares/has-valid-authorization');
+const findInCache                 = require('../../core/middlewares/cache-handler');
+const { verifyPermissionsGetAllUsers, verifyPermissionsGetOneUser } = require('../middlewares/verify-users-permissions');
 
 /**
  * @swagger
@@ -22,7 +23,7 @@ const hasValidAuthorization = require('../../auth/middlewares/has-valid-authoriz
  *               type: object
  *               example: { 'success': true, 'users': 'array' }
  */
-router.get('/', hasRoleAdmin, usersController.getAll);
+router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache, usersController.getAll);
 
 /**
  * @swagger
@@ -39,6 +40,6 @@ router.get('/', hasRoleAdmin, usersController.getAll);
  *               type: object
  *               example: { 'success': true, 'user': 'user' }
  */
-router.get('/:id', idParamIsInteger, hasValidAuthorization, usersController.getById);
+router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsGetOneUser, findInCache, usersController.getById);
 
 module.exports = router;
