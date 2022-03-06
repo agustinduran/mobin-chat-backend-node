@@ -23,7 +23,7 @@ Proyecto realizado por Agustín Durán
 
 ### Sprint-3: Migración [PENDIENTE]
 * Migrar a TypeScript
-* Migrar a Next.js
+* Migrar a Nest.js
 
 ## Instalación
 ```bash
