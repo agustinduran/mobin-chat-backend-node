@@ -1,5 +1,6 @@
 const cacheService    = require('../../core/services/cache-services');
 const usersService    = require('../services/users-service');
+
 const usersRepository = require('../repositories/users-mysql-repository');
 
 exports.getAll = async (req, res) => {

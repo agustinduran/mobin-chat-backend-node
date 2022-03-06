@@ -39,9 +39,9 @@ exports.setCache = async (key, value, expirationInSeconds = null) => {
     }
 };
 
-exports.deleteCache = (key) => {
+exports.deleteCache = async (key) => {
     // return 1 if was deleted successfully, 0 if was cannot delete
-    return client.del(key);
+    return await client.del(key);
 };
 
 exports.existsCache = (key) => {
