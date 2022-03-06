@@ -6,7 +6,7 @@ exports.config = {
     author: pkg.author,
     db: {
         host: process.env.DB_HOST         || 'localhost',
-        port: process.env.DB_PORT         || '3306',
+        port: process.env.DB_PORT         || 3306,
         user: process.env.DB_USER         || 'root',
         password: process.env.DB_PASSWORD || '',
         database: process.env.DB_NAME     || 'promiedos_fueguino'
@@ -17,5 +17,10 @@ exports.config = {
     },
     keys: {
         jwt: process.env.KEY_JWT || '$3CR3T!',
+    },
+    cache: {
+        host: process.env.CACHE_HOST         || 'localhost',
+        port: process.env.CACHE_PORT         || 6379,
+        password: process.env.CACHE_PASSWORD || '$3CR3T!'
     }
 };
