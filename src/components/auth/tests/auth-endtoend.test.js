@@ -8,6 +8,7 @@ beforeEach(async () => {
     // FIXME: Warning with production database
     await User.destroy({where: {}});
     await User.create({
+        id: 1,
         username: "agustin-user",
         password: "$2a$10$k5C5nQxeDS3TSvD/Ya/rm.OWgdlaMTMeyc1So4JVUgLpQuiwvTObu", // 123456
         email: "agustineduran@gmail.com",
@@ -16,6 +17,7 @@ beforeEach(async () => {
         phone: "2964547877"
     });
     await User.create({
+        id: 2,
         username: "agustin-admin",
         password: "$2a$10$k5C5nQxeDS3TSvD/Ya/rm.OWgdlaMTMeyc1So4JVUgLpQuiwvTObu", // 123456
         email: "agustineduran-admin@gmail.com",
