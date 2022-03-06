@@ -8,12 +8,21 @@ beforeEach(async () => {
     // FIXME: Warning with production database
     await User.destroy({where: {}});
     await User.create({
-        username: "agustin",
+        username: "agustin-user",
         password: "$2a$10$k5C5nQxeDS3TSvD/Ya/rm.OWgdlaMTMeyc1So4JVUgLpQuiwvTObu", // 123456
         email: "agustineduran@gmail.com",
         name: "Agustín",
         surname: "Durán",
         phone: "2964547877"
+    });
+    await User.create({
+        username: "agustin-admin",
+        password: "$2a$10$k5C5nQxeDS3TSvD/Ya/rm.OWgdlaMTMeyc1So4JVUgLpQuiwvTObu", // 123456
+        email: "agustineduran-admin@gmail.com",
+        name: "Agustín",
+        surname: "Durán",
+        phone: "2964547877",
+        roles: JSON.stringify(["ROLE_USER", "ROLE_ADMIN"])
     });
 });
 
@@ -162,7 +171,7 @@ describe('POST /api/auth/register', () => {
 
     test('Try register with an username busy', async () => {
         const body = {
-            "username": "agustin",
+            "username": "agustin-user",
             "password": "123456",
             "password-confirmation": "123456",
             "name": "Agustín",
@@ -203,7 +212,7 @@ describe('POST /api/auth/register', () => {
 describe('POST /api/auth/login', () => {
     test('Login by username successful', async () => {
         const body = {
-            username: "agustin",
+            username: "agustin-user",
             password: "123456"
         };
         const response = await 
@@ -233,7 +242,7 @@ describe('POST /api/auth/login', () => {
 
     test('Login with password wrong using username', async () => {
         const body = {
-            username: "agustin",
+            username: "agustin-user",
             password: "123456789"
         };
         await api
@@ -315,7 +324,7 @@ describe('POST /api/auth/login', () => {
 
     test('Login without password', async () => {
         const body = {
-            username: "agustin"
+            username: "agustin-user"
         };
         const response = await 
             api.post('/api/auth/login')
@@ -344,7 +353,7 @@ describe('POST /api/auth/login', () => {
 
     test('Login with password empty', async () => {
         const body = {
-            username: "agustin",
+            username: "agustin-user",
             password: ""
         };
         const response = await 
