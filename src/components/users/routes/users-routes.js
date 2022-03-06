@@ -22,6 +22,13 @@ const { verifyPermissionsGetAllUsers, verifyPermissionsGetOneUser } = require('.
  *             schema:
  *               type: object
  *               example: { 'success': true, 'users': 'array' }
+ *       '403':
+ *         description: Forbidden access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': false, 'message': 'No tiene el permiso solicitado para acceder al recurso' }
  */
 router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache, usersController.getAll);
 
@@ -39,6 +46,27 @@ router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache
  *             schema:
  *               type: object
  *               example: { 'success': true, 'user': 'user' }
+ *       '422':
+ *         description: Id not its an integer
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': false, 'message': 'Id no es un número entero correcto' }
+ *       '403':
+ *         description: Forbidden access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': false, 'message': 'No tiene el permiso solicitado para acceder al recurso' }
+ *       '404':
+ *         description: Resource not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               example: { 'success': false, 'message': 'El recurso solicitado no existe o fue eliminado' }
  */
 router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsGetOneUser, findInCache, usersController.getById);
 
