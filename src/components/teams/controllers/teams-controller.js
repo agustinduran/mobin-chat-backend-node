@@ -38,3 +38,11 @@ exports.save = async (req, res) => {
 
     res.status(201).json(team);
 };
+
+exports.update = async (req, res) => {
+    res.status(404).json({ success: false, message: "En construcción" });
+};
+
+exports.delete = async (req, res) => {
+    res.status(404).json({ success: false, message: "En construcción" });
+};
