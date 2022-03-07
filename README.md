@@ -19,9 +19,19 @@ Proyecto realizado por Agustín Durán
 * Metodología TDD. Pruebas Automatizadas con Jest y Supertest
 * Captura de datos en caché con Redis
 
-### Sprint-2: Infraestructura en la Nube [PENDIENTE]
+### Sprint-2: Modelo de Negocio [PENDIENTE]
 
-### Sprint-3: Migración [PENDIENTE]
+### Sprint-3: Infraestructura en la Nube
+* Despliegue en Amazon Web Services
+* Instancia EC2 con linux en AWS
+* Proxy y servidor web nginx. Response encriptada por Gzip
+(Para no exponer el servicio [la api] lo hago andar a traves del proxy nginx) llamado Proxy reverso
+* Gestor de procesos PM2 para producción
+* Servicio de bases de datos desacoplado en un RDS
+
+### Sprint-4: Integración con Servicios Externos [PENDIENTE]
+
+### Sprint-5: Migración de Sistema [PENDIENTE]
 * Migrar a TypeScript
 * Migrar a Nest.js
 
