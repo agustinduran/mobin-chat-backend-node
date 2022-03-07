@@ -3,7 +3,9 @@ const User = require('../models/user');
 
 exports.getAll = async () => {
     // TODO: Paginate
-    return await User.findAll(where: { username: username });
+    return await User.findAll({
+        attributes: { exclude: ['password'] }
+    });
 };
 
 exports.getById = async (id) => {
