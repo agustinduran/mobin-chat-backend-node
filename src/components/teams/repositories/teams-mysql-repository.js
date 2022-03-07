@@ -31,7 +31,7 @@ exports.update = async (team) => {
     return false;
 }
 
-exports.delete = async (team) => {
+exports.delete = async (id) => {
     // return await Team.create({
     //     nameShort: team.nameShort,
     //     nameLong: team.nameLong,

@@ -17,4 +17,8 @@ router.get('/:id', teamsController.getById);
 
 router.post('/', teamsController.save);
 
+router.put('/:id', teamsController.update);
+
+router.delete('/:id', teamsController.delete);
+
 module.exports = router;

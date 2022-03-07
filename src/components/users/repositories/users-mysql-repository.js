@@ -3,9 +3,7 @@ const User = require('../models/user');
 
 exports.getAll = async () => {
     // TODO: Paginate
-    return await User.findAll({
-        attributes: { exclude: ['password'] }
-    });
+    return await User.findAll(where: { username: username });
 };
 
 exports.getById = async (id) => {
