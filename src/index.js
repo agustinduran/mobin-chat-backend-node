@@ -49,6 +49,20 @@ const db = require('./database/connection');
     }
 })();
 
+const redis = require('redis');
+const client = redis.createClient({
+    host: config.cache.host,
+    port: config.cache.port
+})
+
+client.on('connect',  () => {
+    console.log('Redis client connected');
+});
+
+client.on('error', (err) => {
+    console.log('Something went wrong ' + err);
+});
+
 // CORE
 const coreRoutes = require('./components/core/routes/core-routes');
 app.use('/api', coreRoutes);

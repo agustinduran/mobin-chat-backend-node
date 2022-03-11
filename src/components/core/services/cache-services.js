@@ -3,28 +3,28 @@ const { config } = require('../../../config');
 
 const oneHour = 3600;
 
-const client = redis.createClient({
-    host: config.cache.host,
-    port: config.cache.port,
-    // password: config.cache.password
-});
+// const client = redis.createClient({
+//     host: config.cache.host,
+//     port: config.cache.port,
+//     // password: config.cache.password
+// });
 
-(async () => {
-    try {
-        await client.connect();
-    } catch (error) {
-        console.log(error);
-        throw new Error(error);
-    }
-})();
+// (async () => {
+//     try {
+//         await client.connect();
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error(error);
+//     }
+// })();
 
-client.on('connect',  () => {
-    console.log('Redis client connected');
-});
+// client.on('connect',  () => {
+//     console.log('Redis client connected');
+// });
 
-client.on('error', (err) => {
-    console.log('Something went wrong ' + err);
-});
+// client.on('error', (err) => {
+//     console.log('Something went wrong ' + err);
+// });
 
 // client.connect();
 
