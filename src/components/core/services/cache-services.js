@@ -9,6 +9,15 @@ const client = redis.createClient({
     // password: config.cache.password
 });
 
+(async () => {
+    try {
+        await client.connect();
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+})();
+
 client.on('connect',  () => {
     console.log('Redis client connected');
 });
