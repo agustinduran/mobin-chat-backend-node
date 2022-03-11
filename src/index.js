@@ -53,7 +53,7 @@ const redis = require('redis');
 const client = redis.createClient({
     host: config.cache.host,
     port: config.cache.port
-})
+});
 
 client.on('connect',  () => {
     console.log('Redis client connected');
@@ -62,6 +62,15 @@ client.on('connect',  () => {
 client.on('error', (err) => {
     console.log('Something went wrong ' + err);
 });
+
+(async () => {
+    try {
+        await client.connect();
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+})();
 
 // CORE
 const coreRoutes = require('./components/core/routes/core-routes');
