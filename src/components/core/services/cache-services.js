@@ -17,7 +17,7 @@ client.on('error', (err) => {
     console.log('Something went wrong ' + err);
 });
 
-client.connect();
+// client.connect();
 
 exports.getCache = async (key) => {
     let response = await client.get(key);
