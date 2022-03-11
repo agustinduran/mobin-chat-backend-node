@@ -88,4 +88,4 @@ const server = app.listen(config.server.port, () => {
     console.log(`listening on port ${config.server.port}`);
 });
 
-module.exports = { app, server };
+module.exports = { app, server, client };

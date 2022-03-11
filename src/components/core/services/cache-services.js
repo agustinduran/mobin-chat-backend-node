@@ -1,5 +1,6 @@
 const redis = require('redis');
 const { config } = require('../../../config');
+const { client } = require('../../../index');
 
 const oneHour = 3600;
 
