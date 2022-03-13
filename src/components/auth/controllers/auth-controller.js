@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
 
     const token = authService.generateToken(user);
     if (token) {
-        return res.status(201).json({ success: true, token: `Bearer ${token}`});
+        return res.status(201).json({ success: true, token: `Bearer ${token}` });
     } else {
         return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
         if (newUser) {
             // TODO: NO HARDCODE
             client.del('/api/users/');
-            return res.status(201).json({ success: true, user: newUser });
+            return res.status(201).json({ success: true, user: newUser, from: "database" });
         } else return res.status(500).json({ success: false, user: {}, message: 'Error en el servidor' });
     } catch(error) {
         if (error.name === 'SequelizeUniqueConstraintError')

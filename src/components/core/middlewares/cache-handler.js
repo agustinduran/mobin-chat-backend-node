@@ -4,11 +4,10 @@ const findInCache = async (req, res, next) => {
     try {
         const key = req.originalUrl;
         client.get(key, (err, data) => {
-            console.log(key +" - middleware: " +data);
             if (!data) {
                 next();
             } else {
-                return res.status(200).json({ message: "cache", data: JSON.parse(data) });
+                return res.status(200).json(JSON.parse(data));
             }
         });
     } catch (err) {
