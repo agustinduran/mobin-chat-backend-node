@@ -50,27 +50,10 @@ const db = require('./database/connection');
 })();
 
 const redis = require('redis');
-const client = redis.createClient({
-    host: config.cache.host,
-    port: config.cache.port
+const client = redis.createClient(config.cache.port, config.cache.host);
+client.get("hola", (err, data) => {
+    console.log(data);
 });
-
-client.on('connect',  () => {
-    console.log('Redis client connected');
-});
-
-client.on('error', (err) => {
-    console.log('Something went wrong ' + err);
-});
-
-(async () => {
-    try {
-        await client.connect();
-    } catch (error) {
-        console.log(error);
-        throw new Error(error);
-    }
-})();
 
 // CORE
 const coreRoutes = require('./components/core/routes/core-routes');

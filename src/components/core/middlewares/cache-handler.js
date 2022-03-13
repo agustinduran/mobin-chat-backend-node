@@ -2,11 +2,12 @@ const cacheService = require('../services/cache-services');
 
 const findInCache = async (req, res, next) => {
     try {
-        let response = await cacheService.getCache(req.originalUrl);
+        const response = await cacheService.getCache(req.originalUrl);
+	console.log(req.originalUrl +" - middleware: " +response);
         if (!response) {
             next();
         } else {
-            res.status(200).json(response);
+	    res.status(200).json({message: "cache", response});
         }
     } catch (err) {
         console.log(err);

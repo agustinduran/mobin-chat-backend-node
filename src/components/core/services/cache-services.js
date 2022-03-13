@@ -1,51 +1,40 @@
 const redis = require('redis');
 const { config } = require('../../../config');
-const { client } = require('../../../index');
 
 const oneHour = 3600;
 
-// const client = redis.createClient({
-//     host: config.cache.host,
-//     port: config.cache.port,
-//     // password: config.cache.password
-// });
+const client = redis.createClient(config.cache.port, config.cache.host);
 
-// (async () => {
-//     try {
-//         await client.connect();
-//     } catch (error) {
-//         console.log(error);
-//         throw new Error(error);
-//     }
-// })();
+client.get("hola", (err, data) => {
+    console.log(data);
+});
 
-// client.on('connect',  () => {
-//     console.log('Redis client connected');
-// });
+client.on('connect',  () => {
+    console.log('Redis client connected');
+});
 
-// client.on('error', (err) => {
-//     console.log('Something went wrong ' + err);
-// });
+client.on('error', (err) => {
+    console.log('Something went wrong ' + err);
+});
 
-// client.connect();
-
-exports.getCache = async (key) => {
-    let response = await client.get(key);
-    if (!response) {
-        return null;
-    } else {
-        return JSON.parse(response);
-    }
+exports.getCache = (key) => {
+    return client.get(key, (err, data) => {
+	if (!data) {
+            return null;
+        } else {
+	    return JSON.parse(data);
+	}
+    });
 };
 
 exports.setCache = async (key, value, expirationInSeconds = null) => {
+    console.log(key);
+    console.log(value);
     if (!expirationInSeconds) {
         await client.set(key, JSON.stringify(value));
     } else {
-        await client.set(key, JSON.stringify(value), {
-            EX: expirationInSeconds,
-            NX: true
-        });
+	// TODO: Use expirationInSeconds
+        await client.set(key, JSON.stringify(value));
     }
 };
 
