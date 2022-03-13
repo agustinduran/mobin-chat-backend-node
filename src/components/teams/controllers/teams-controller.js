@@ -1,5 +1,5 @@
 const teamsService    = require('../services/teams-service');
-const teamsRepository = require('../repositories/teams-mysql-repository');
+const teamsRepository = require('../repositories/teams-repository');
 
 exports.getAll = async (req, res) => {
     const teams = await teamsService.getAll(teamsRepository);

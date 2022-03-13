@@ -1,4 +1,4 @@
-const usersRepository = require('../../users/repositories/users-mysql-repository');
+const usersRepository = require('../../users/repositories/users-repository');
 
 // const usernameOrEmailNotExists = async (username = '') => {
 //     const user = await usersRepository.getByUsernameOrEmail(username);
