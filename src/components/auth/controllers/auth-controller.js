@@ -1,8 +1,9 @@
+const { client } = require('../../../database/redis');
+
 const authService     = require('../services/auth-service');
-const cacheService    = require('../../core/services/cache-services');
+const usersService    = require('../../users/services/users-service');
 
 const usersRepository = require('../../users/repositories/users-mysql-repository');
-const usersService    = require('../../users/services/users-service');
 
 exports.login = async (req, res) => {
     const user = await usersService.getUserByUsername(usersRepository, req.body.username);
@@ -32,10 +33,9 @@ exports.register = async (req, res) => {
         const newUser = await usersService.createUser(usersRepository, req.body);
         if (newUser) {
             // TODO: NO HARDCODE
-            await cacheService.deleteCache('/api/users/');
+            client.del('/api/users/');
             return res.status(201).json({ success: true, user: newUser });
-        }
-        else return res.status(500).json({ success: false, user: {}, message: 'Error en el servidor' });
+        } else return res.status(500).json({ success: false, user: {}, message: 'Error en el servidor' });
     } catch(error) {
         if (error.name === 'SequelizeUniqueConstraintError')
             return res.status(403).json({ success: false, message: 'Usuario ya existente' });

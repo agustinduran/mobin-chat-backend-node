@@ -49,12 +49,6 @@ const db = require('./database/connection');
     }
 })();
 
-const redis = require('redis');
-const client = redis.createClient(config.cache.port, config.cache.host);
-client.get("hola", (err, data) => {
-    console.log(data);
-});
-
 // CORE
 const coreRoutes = require('./components/core/routes/core-routes');
 app.use('/api', coreRoutes);
