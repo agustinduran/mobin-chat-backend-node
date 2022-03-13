@@ -3,7 +3,7 @@ const client = require('../../../database/redis');
 const authService     = require('../services/auth-service');
 const usersService    = require('../../users/services/users-service');
 
-const usersRepository = require('../../users/repositories/users-mysql-repository');
+const usersRepository = require('../../users/repositories/users-repository');
 
 exports.login = async (req, res) => {
     const user = await usersService.getUserByUsername(usersRepository, req.body.username);

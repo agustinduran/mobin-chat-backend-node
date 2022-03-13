@@ -2,7 +2,7 @@ const client  = require('../../../database/redis');
 
 const usersService    = require('../services/users-service');
 
-const usersRepository = require('../repositories/users-mysql-repository');
+const usersRepository = require('../repositories/users-repository');
 
 exports.getAll = async (req, res) => {
     // TODO: PAGINATE
