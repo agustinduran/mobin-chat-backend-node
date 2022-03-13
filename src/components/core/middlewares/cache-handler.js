@@ -1,4 +1,4 @@
-const { client } = require('../../../database/redis');
+const client = require('../../../database/redis');
 
 const findInCache = async (req, res, next) => {
     try {

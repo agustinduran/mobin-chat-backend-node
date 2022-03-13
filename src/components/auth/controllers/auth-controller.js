@@ -1,4 +1,4 @@
-const { client } = require('../../../database/redis');
+const client = require('../../../database/redis');
 
 const authService     = require('../services/auth-service');
 const usersService    = require('../../users/services/users-service');
