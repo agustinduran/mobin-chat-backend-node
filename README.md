@@ -1,4 +1,4 @@
-# Promiedos Fueguino
+# BoilerPlate for NodeJs
 Proyecto realizado por Agustín Durán
 
 ## Tecnologías utilizadas
@@ -19,9 +19,7 @@ Proyecto realizado por Agustín Durán
 * Metodología TDD. Pruebas Automatizadas con Jest y Supertest
 * Captura de datos en caché con Redis
 
-### Sprint-2: Modelo de Negocio [PENDIENTE]
-
-### Sprint-3: Infraestructura en la Nube
+### Sprint-2: Infraestructura en la Nube
 * Despliegue en Amazon Web Services
 * Instancia EC2 con linux en AWS
 * Proxy y servidor web nginx. Response encriptada por Gzip
