@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
     try {
         const newUser = await usersService.createUser(usersRepository, req.body);
         if (newUser) {
-            // TODO: NO HARDCODE
+            // TODO: NO HARDCODE. MAKE A CONST CLASS
             client.del('/api/users/');
             return res.status(201).json({ success: true, user: newUser, from: "database" });
         } else return res.status(500).json({ success: false, user: {}, message: 'Error en el servidor' });

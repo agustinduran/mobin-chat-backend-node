@@ -28,7 +28,11 @@ Proyecto realizado por Agustín Durán
 (Para no exponer el servicio [la api] lo hago andar a traves del proxy nginx) llamado Proxy reverso
 * Gestor de procesos PM2 para producción
 * Servicio de bases de datos desacoplado en un RDS
-* Servicio de caché desacoplado en un ElastiCache
+* Servicio de caché Redis desacoplado en un ElastiCache
+* Registro de dominio con Route 53
+* Certificado SSL AWS Certificate Manager
+* Bucket S3 mediante un CloudFront a disposición
+* CI/CD 
 
 ### Sprint-4: Integración con Servicios Externos [PENDIENTE]
 

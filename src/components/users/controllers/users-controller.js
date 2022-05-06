@@ -9,11 +9,11 @@ exports.getAll = async (req, res) => {
     const users = await usersService.getAll(usersRepository);
     try {
         // TODO: Use expiration
-        client.set(req.originalUrl, JSON.stringify({ success: true, users: users, from: "cache" }));
+        client.set(req.originalUrl, JSON.stringify({ success: true, users, from: "cache" }));
     } catch (err) {
         console.log(err);
     } finally {
-        res.status(200).json({ success: true, users: users, from: "database" });
+        res.status(200).json({ success: true, users, from: "database" });
     }
 };
 
