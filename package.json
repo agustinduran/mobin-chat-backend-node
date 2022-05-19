@@ -1,5 +1,5 @@
 {
-    "name": "promiedos-fueguino-backend",
+    "name": "boilerplate-nodejs",
     "version": "1.0.0",
     "description": "",
     "author": "Agustín Durán",
@@ -11,13 +11,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/agustinduran/promiedos-fueguino-backend.git"
+        "url": "git+https://github.com/agustinduran/boilerplate-nodejs.git"
     },
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/agustinduran/promiedos-fueguino-backend/issues"
+        "url": "https://github.com/agustinduran/boilerplate-nodejs/issues"
     },
-    "homepage": "https://github.com/agustinduran/promiedos-fueguino-backend#readme",
+    "homepage": "https://github.com/agustinduran/boilerplate-nodejs#readme",
     "devDependencies": {
         "jest": "^27.5.1",
         "nodemon": "^2.0.12",

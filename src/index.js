@@ -7,7 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: 'Promiedos Fueguino',
+            title: 'boilerplate-nodejs',
             description: 'Backend',
             version: config.version,
             contact: {
