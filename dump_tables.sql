@@ -10,6 +10,7 @@ CREATE TABLE `users` (
   `phone` varchar(40) DEFAULT NULL,
   `roles` longtext DEFAULT '["ROLE_USER"]',
   `active` tinyint(4) NOT NULL DEFAULT 1,
+  `image` VARCHAR(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),

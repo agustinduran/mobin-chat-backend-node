@@ -11,6 +11,7 @@ User.init({
     phone    : { type: DataTypes.STRING, allowNull: true },
     roles    : { type: DataTypes.STRING, allowNull: true, default: '["ROLE_USER"]' },
     active   : { type: DataTypes.TINYINT, allowNull: true, default: 1 },
+    image    : { type: DataTypes.STRING, allowNull: true },
     createdAt: { field: 'created_at', type: DataTypes.DATE, allowNull: true },
     updatedAt: { field: 'updated_at', type: DataTypes.DATE, allowNull: true },
 }, {
