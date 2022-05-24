@@ -1,4 +1,4 @@
-# BoilerPlate for NodeJs
+# Mobin Backend
 Proyecto realizado por Agustín Durán
 
 ## Tecnologías utilizadas
