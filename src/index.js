@@ -7,7 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: 'boilerplate-nodejs',
+            title: 'Mobin',
             description: 'Backend',
             version: config.version,
             contact: {
