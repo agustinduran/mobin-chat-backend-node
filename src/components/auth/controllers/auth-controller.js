@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
 
     const token = authService.generateToken(user);
     if (token) {
-        return res.status(201).json({ success: true, token: `Bearer ${token}` });
+        return res.status(201).json({ success: true, token: `Bearer ${token}`, user: user });
     } else {
         return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
