@@ -24,7 +24,7 @@ const { verifyPermissionsActionOnAllUsers, verifyPermissionsActionOnOneUser } = 
  *       '403':
  *         description: Forbidden access
  */
-router.get('/', hasValidAuthorization, verifyPermissionsActionOnAllUsers, findInCache, usersController.getAll);
+router.get('/', hasValidAuthorization, findInCache, usersController.getAll);
 
 /**
  * @swagger
