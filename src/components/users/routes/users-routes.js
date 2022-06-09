@@ -6,7 +6,7 @@ const usersController = require('../controllers/users-controller');
 const idParamIsInteger            = require('../middlewares/id-param-is-integer');
 const hasValidAuthorization       = require('../../auth/middlewares/has-valid-authorization');
 const findInCache                 = require('../../core/middlewares/cache-handler');
-const { verifyPermissionsGetAllUsers, verifyPermissionsGetOneUser } = require('../middlewares/verify-users-permissions');
+const { verifyPermissionsActionOnAllUsers, verifyPermissionsActionOnOneUser } = require('../middlewares/verify-users-permissions');
 
 /**
  * @swagger
@@ -24,7 +24,7 @@ const { verifyPermissionsGetAllUsers, verifyPermissionsGetOneUser } = require('.
  *       '403':
  *         description: Forbidden access
  */
-router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache, usersController.getAll);
+router.get('/', hasValidAuthorization, verifyPermissionsActionOnAllUsers, findInCache, usersController.getAll);
 
 /**
  * @swagger
@@ -49,6 +49,31 @@ router.get('/', hasValidAuthorization, verifyPermissionsGetAllUsers, findInCache
  *       '404':
  *         description: Resource not found
  */
-router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsGetOneUser, findInCache, usersController.getById);
+router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsActionOnOneUser, findInCache, usersController.getById);
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     summary: Edit an user
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: User id
+ *         required: true
+ *         type: integer
+ *         example: 1
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *       '422':
+ *         description: Id isn't an integer
+ *       '403':
+ *         description: Forbidden access
+ *       '404':
+ *         description: Resource not found
+ */
+router.put('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsActionOnOneUser, findInCache, usersController.editById);
 
 module.exports = router;
