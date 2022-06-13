@@ -61,6 +61,10 @@ app.use('/api/auth', authRoutes);
 const usersRoutes = require('./components/users/routes/users-routes');
 app.use('/api/users', usersRoutes);
 
+// CHATS
+const chatsRoutes = require('./components/chats/routes/chats-routes');
+app.use('/api/chats', chatsRoutes);
+
 // catch 404 and forward to error handler
 const { error404, errorCatcher } = require('./components/core/middlewares/error-handler');
 app.use(error404);
