@@ -38,8 +38,6 @@ exports.create = async (req, res) => {
     try {
         const newChat = await chatsService.createChat(chatsRepository, req.body);
         if (newChat) {
-            // TODO: NO HARDCODE. MAKE A CONST CLASS
-            client.del('/api/chats/');
             return res.status(201).json({ success: true, data: newChat, from: "database" });
         } else return res.status(500).json({ success: false, data: {}, message: 'Error en el servidor' });
     } catch(error) {
