@@ -17,7 +17,7 @@ const { verifyPermissionsActionOnOneChat }  = require('../middlewares/verify-cha
  * /api/chats:
  *   get:
  *     summary: Get all chats
- *     tags: [Chats]
+ *     tags: [Chat]
  *     consumes:
  *       application/json
  *     produces:
@@ -84,7 +84,9 @@ router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsAct
  *       '201':
  *         description: Success response
  *       '400':
- *         description: Invalid body    
+ *         description: Invalid body
+ *       '403':
+ *         description: Forbidden access    
  */
 router.post('/', hasValidAuthorization, verifyPermissionsActionOnOneChat, [
     check('id-user-transmitter', 'Usuario emisor es requerido').not().isEmpty().trim().escape(),
