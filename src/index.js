@@ -78,4 +78,10 @@ const server = app.listen(config.server.port, () => {
     console.log(`listening on port ${config.server.port}`);
 });
 
+// SOCKETS
+const io = require('socket.io')(server);
+
+const chatSocket = require("./socket/chat-socket");
+chatSocket(io);
+
 module.exports = { app, server };
