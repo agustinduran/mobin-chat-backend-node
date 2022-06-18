@@ -18,6 +18,7 @@ Proyecto realizado por Agustín Durán
 * BCrypt para cifrado de contraseñas
 * Metodología TDD. Pruebas Automatizadas con Jest y Supertest
 * Captura de datos en caché con Redis
+* SocketIO para comunicación bidireccional entre usuarios
 
 ### Sprint-2: Infraestructura en la Nube
 * Despliegue en Amazon Web Services

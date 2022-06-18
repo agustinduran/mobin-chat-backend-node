@@ -1,6 +1,6 @@
 const { QueryTypes } = require('sequelize');
 const db = require('../../../database/connection');
-const User = require('../models/chat');
+const Chat = require('../models/chat');
 
 // exports.getAll = async () => {
 //     // TODO: Paginate

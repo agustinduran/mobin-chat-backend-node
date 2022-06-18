@@ -53,7 +53,7 @@ router.get('/', hasValidAuthorization, verifyPermissionsActionOnAllUsers, findIn
  *       '404':
  *         description: Resource not found
  */
-router.get('/:id', idParamIsInteger, hasValidAuthorization, findInCache, messagesController.getById);
+router.get('/:id', idParamIsInteger, hasValidAuthorization, findInCache, messagesController.getAllMessagesByChat);
 
 /**
  * @swagger

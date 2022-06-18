@@ -3,21 +3,21 @@ const client  = require('../../../database/redis');
 const messagesService    = require('../services/messages-service');
 const messagesRepository = require('../repositories/messages-repository');
 
-exports.getAll = async (req, res) => {
+exports.getAllMessagesByChat = async (req, res) => {
     // TODO: PAGINATE
-    // const chats = await messagesService.getAll(messagesRepository);
-    // try {
-    //     // TODO: Use expiration
-    //     client.set(req.originalUrl, JSON.stringify({ success: true, chats, from: "cache" }));
-    // } catch (err) {
-    //     console.log(err);
-    // } finally {
-    //     res.status(200).json({ success: true, chats, from: "database" });
-    // }
-    res.status(200).json({ success: false, from: "in-process" });
+    const idChat = Number.parseInt(req.params.id);
+    try {
+        const messages = await messagesService.getAllByChat(messagesRepository, idChat);
+        //     // TODO: Use expiration
+        //     client.set(req.originalUrl, JSON.stringify({ success: true, messages, from: "cache" }));
+        return res.status(200).json({ success: true, messages, from: "database" });
+    } catch (err) {
+        console.log(err);
+        return res.status(200).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
+    }
 };
 
-exports.getById = async (req, res) => {
+exports.getAll = async (req, res) => {
 //     const id = Number.parseInt(req.params.id);
 //     const chatFinded = await messagesService.getChatById(messagesRepository, id);
 
@@ -32,7 +32,7 @@ exports.getById = async (req, res) => {
 //     } else {
 //         return res.status(404).send({ success: false, message: 'El recurso solicitado no existe o fue eliminado' })
 //     }
-    res.status(200).json({ success: false, from: "in-process" });
+    return res.status(200).json({ success: false, from: "in-process" });
 };
 
 exports.create = async (req, res) => {
