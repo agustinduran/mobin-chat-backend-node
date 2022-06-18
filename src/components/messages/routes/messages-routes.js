@@ -88,14 +88,14 @@ router.get('/:id', idParamIsInteger, hasValidAuthorization, findInCache, message
  *               type: int
  *               description: chat id
  *               example: 3
- *             message:
+ *             status:
  *               type: String
  *               description: status
- *               example: 'TODO:Read'
+ *               example: 'TODO Read'
  *             url:
  *               type: String
- *               description: url de TODO:
- *               example: 'TODO:www.algo.com'
+ *               description: url de TODO
+ *               example: 'TODO www.algo.com'
  *             is-image:
  *               type: boolean
  *               description: if the message is an image
@@ -119,8 +119,10 @@ router.post('/', hasValidAuthorization, [
     check('id-chat', 'Id de chat es requerido').not().isEmpty().trim().escape(),
     check('status', 'Estado es requerido').not().isEmpty().trim().escape(),
     check('url', 'Url es requerida').not().isEmpty().trim().escape(),
-    check('is-image', 'isImage es requerida').not().isBoolean(),
-    check('is-video', 'isVideo es requerido').not().isBoolean(),
+    check('is-image', 'isImage es requerida').not().isEmpty().trim().escape().isBoolean(),
+    check('is-image', 'isImage debe ser un boolean').isInt(),
+    check('is-video', 'isVideo es requerido').not().isEmpty().trim().escape().isBoolean(),
+    check('is-video', 'isVideo debe ser un boolean').isInt(),
     // check('status').isIn(['canva', 'photoshop', 'gimp']),
     hasValidRequest
 ], messagesController.create);
