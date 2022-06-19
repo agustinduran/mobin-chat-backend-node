@@ -12,13 +12,14 @@ exports.getChatById = async (repository, id) => {
 
 exports.createChat = async (repository, chat) => {
     const chatExists = await this.getByBothUsers(repository, chat);
-    // console.log(chatExists);
     if (chatExists.length > 0) {
-        return await repository.update(chat);
+        await repository.update(chatExists[0]);
+        return chatExists[0].id;
     } else {
         // TODO: NO HARDCODE. MAKE A CONST CLASS
-        client.del('/api/chats/');
-        return await repository.save(chat);
+        // client.del('/api/chats/');
+        var chat = await repository.save(chat);
+        return chat[0];
     }
 };
 

@@ -38,6 +38,7 @@ exports.getAll = async (req, res) => {
 exports.create = async (req, res) => {
     try {
         const newMessage = await messagesService.createMessage(messagesRepository, req.body);
+        console.log(newMessage);
         if (newMessage) {
             return res.status(201).json({ success: true, data: newMessage, from: "database" });
         } else return res.status(500).json({ success: false, data: {}, message: 'Error en el servidor' });
