@@ -41,6 +41,7 @@ exports.create = async (req, res) => {
             return res.status(201).json({ success: true, data: newChat, from: "database" });
         } else return res.status(500).json({ success: false, data: {}, message: 'Error en el servidor' });
     } catch(error) {
+        console.log(error);
         if (error.name === 'SequelizeUniqueConstraintError')
             return res.status(403).json({ success: false, message: 'Chat ya existente' });
         else
