@@ -117,12 +117,12 @@ router.post('/', hasValidAuthorization, [
     check('id-user-sender', 'Usuario emisor es requerido').not().isEmpty().trim().escape(),
     check('id-user-receiver', 'Usuario receptor es requerido').not().isEmpty().trim().escape(),
     check('id-chat', 'Id de chat es requerido').not().isEmpty().trim().escape(),
-    check('status', 'Estado es requerido').not().isEmpty().trim().escape(),
-    check('url', 'Url es requerida').not().isEmpty().trim().escape(),
-    check('is-image', 'isImage es requerida').not().isEmpty().trim().escape().isBoolean(),
-    check('is-image', 'isImage debe ser un boolean').isInt(),
-    check('is-video', 'isVideo es requerido').not().isEmpty().trim().escape().isBoolean(),
-    check('is-video', 'isVideo debe ser un boolean').isInt(),
+    // check('status', 'Estado es requerido').not().isEmpty().trim().escape(),
+    // check('url', 'Url es requerida').not().isEmpty().trim().escape(),
+    check('is-image', 'isImage es requerida').not().isEmpty().trim().escape().isInt(),
+    check('is-image', 'isImage debe ser un entero').isInt(),
+    check('is-video', 'isVideo es requerido').not().isEmpty().trim().escape().isInt(),
+    check('is-video', 'isVideo debe ser un entero').isInt(),
     // check('status').isIn(['canva', 'photoshop', 'gimp']),
     hasValidRequest
 ], messagesController.create);

@@ -41,7 +41,8 @@ exports.save = async (message) => {
             message['id-user-receiver'],
             message['id-chat'],
             "SENDED",
-            message.url,
+            // message.url,
+            "",
             message['is-image'],
             message['is-video'],
             new Date().getTime()
