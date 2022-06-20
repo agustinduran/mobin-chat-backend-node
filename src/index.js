@@ -1,4 +1,3 @@
-const express = require('express');
 const { config } = require('./config');
 
 const swaggerJsDoc = require('swagger-jsdoc');
@@ -28,8 +27,14 @@ const swaggerOptions = {
     apis: ['./src/components/*/routes/*-routes.js']
 };
 
+const express = require('express');
 const app = express();
 app.use(express.json());
+
+const http = require('http');
+const server = http.createServer(app);
+
+const io = require('socket.io')(server);
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -74,13 +79,11 @@ const { error404, errorCatcher } = require('./components/core/middlewares/error-
 app.use(error404);
 app.use(errorCatcher);
 
-const server = app.listen(config.server.port, () => {
+server.listen(config.server.port, () => {
     console.log(`listening on port ${config.server.port}`);
 });
 
 // SOCKETS
-const io = require('socket.io')(server);
-
 const chatSocket = require("./socket/chat-socket");
 chatSocket(io);
 
