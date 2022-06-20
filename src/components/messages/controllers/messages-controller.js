@@ -10,7 +10,7 @@ exports.getAllMessagesByChat = async (req, res) => {
         const messages = await messagesService.getAllByChat(messagesRepository, idChat);
         //     // TODO: Use expiration
         //     client.set(req.originalUrl, JSON.stringify({ success: true, messages, from: "cache" }));
-        return res.status(200).json({ success: true, messages, from: "database" });
+        return res.status(200).json({ success: true, data: messages, from: "database" });
     } catch (err) {
         console.log(err);
         return res.status(200).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
