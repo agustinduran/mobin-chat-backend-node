@@ -2,25 +2,12 @@ const { QueryTypes } = require('sequelize');
 const db = require('../../../database/connection');
 const Message = require('../models/message');
 
-// exports.getAll = async () => {
-//     // TODO: Paginate
-//     return await User.findAll({
-//         attributes: { exclude: ['password'] }
-//     });
-// };
-
-// exports.getById = async (id) => {
-//     return await User.findOne({
-//         where: { id: id },
-//         attributes: { exclude: ['password'] }
-//     });
-// }
-
 exports.getAllByChat = async (idChat) => {
     // TODO: Project.findAndCountAll for getCount
     return await Message.findAll({
         // TODO: attributes: { exclude: ['password'] },
-        where: { "id_chat": idChat }
+        where: { "id_chat": idChat },
+        order: [["timestamp", "DESC"]]
     });
 };
 
