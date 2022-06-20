@@ -9,26 +9,6 @@ const hasValidRequest = require('../../core/middlewares/error-request-handler');
 const idParamIsInteger            = require('../../users/middlewares/id-param-is-integer');
 const hasValidAuthorization       = require('../../auth/middlewares/has-valid-authorization');
 const findInCache                 = require('../../core/middlewares/cache-handler');
-const { verifyPermissionsActionOnAllUsers } = require('../../users/middlewares/verify-users-permissions');
-// const { verifyPermissionsActionOnOneMessage }  = require('../middlewares/verify-messages-permissions');
-
-/**
- * @swagger
- * /api/messages:
- *   get:
- *     summary: Get all messages
- *     tags: [Message]
- *     consumes:
- *       application/json
- *     produces:
- *       application/json
- *     responses:
- *       '200':
- *         description: Success response
- *       '403':
- *         description: Forbidden access
- */
-router.get('/', hasValidAuthorization, verifyPermissionsActionOnAllUsers, findInCache, messagesController.getAll);
 
 /**
  * @swagger

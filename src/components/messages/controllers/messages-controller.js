@@ -17,24 +17,6 @@ exports.getAllMessagesByChat = async (req, res) => {
     }
 };
 
-exports.getAll = async (req, res) => {
-//     const id = Number.parseInt(req.params.id);
-//     const chatFinded = await messagesService.getChatById(messagesRepository, id);
-
-//     if (chatFinded) {
-//         try {
-//             client.set(req.originalUrl, JSON.stringify({ success: true, chat: chatFinded, from: "cache" }));
-//         } catch (err) {
-//             console.log(err);
-//         } finally {
-//             return res.status(200).json({ success: true, chat: chatFinded, from: "database" });
-//         }
-//     } else {
-//         return res.status(404).send({ success: false, message: 'El recurso solicitado no existe o fue eliminado' })
-//     }
-    return res.status(200).json({ success: false, from: "in-process" });
-};
-
 exports.create = async (req, res) => {
     try {
         const newMessage = await messagesService.createMessage(messagesRepository, req.body);
