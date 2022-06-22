@@ -29,7 +29,7 @@ beforeEach(async () => {
 });
 
 describe('POST /api/auth/register', () => {
-    test('Register successfuly', async () => {
+    test('Register successfully', async () => {
         const body = {
             "username": "vbuterin",
             "password": "123456",
@@ -212,7 +212,7 @@ describe('POST /api/auth/register', () => {
 });
 
 describe('POST /api/auth/login', () => {
-    test('Login by username successfuly', async () => {
+    test('Login by username successfully', async () => {
         const body = {
             username: "agustin-user",
             password: "123456"
@@ -227,7 +227,7 @@ describe('POST /api/auth/login', () => {
         expect(response.body.token).toBeDefined();
     });
 
-    test('Login by email successfuly', async () => {
+    test('Login by email successfully', async () => {
         const body = {
             username: "agustineduran@gmail.com",
             password: "123456"

@@ -29,7 +29,7 @@ beforeEach(async () => {
 });
 
 describe('GET /api/users/', () => {
-    test('Get all users successfuly', async () => {
+    test('Get all users successfully', async () => {
         const body = {
             username: "agustin-admin",
             password: "123456"
@@ -89,7 +89,7 @@ describe('GET /api/users/', () => {
 });
 
 describe('GET /api/users/{id}', () => {
-    test('Get same user successfuly by ROLE_USER', async () => {
+    test('Get same user successfully by ROLE_USER', async () => {
         const body = {
             username: "agustin-user",
             password: "123456"
@@ -135,7 +135,7 @@ describe('GET /api/users/{id}', () => {
         expect(response.body.message).toBeDefined();
     });
 
-    test('Get other user successfuly by ROLE_ADMIN', async () => {
+    test('Get other user successfully by ROLE_ADMIN', async () => {
         const body = {
             username: "agustin-admin",
             password: "123456"
@@ -158,7 +158,7 @@ describe('GET /api/users/{id}', () => {
         expect(response.body.user).toBeDefined();
     });
 
-    test('Get same user successfuly by ROLE_ADMIN', async () => {
+    test('Get same user successfully by ROLE_ADMIN', async () => {
         const body = {
             username: "agustin-admin",
             password: "123456"
