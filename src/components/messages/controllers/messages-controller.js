@@ -29,3 +29,12 @@ exports.create = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
     }
 };
+
+exports.update = async (req, res) => {
+    try {
+        await messagesService.update(messagesRepository, req.params.id);
+        return res.status(201).json({ success: true });
+    } catch(error) {
+        return res.status(500).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
+    }
+};

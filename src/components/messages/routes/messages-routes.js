@@ -107,6 +107,31 @@ router.post('/', hasValidAuthorization, [
     hasValidRequest
 ], messagesController.create);
 
+/**
+ * @swagger
+ * /api/messages/{id}:
+ *   patch:
+ *     summary: Update a message to seen
+ *     tags: [Message]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Message id
+ *         required: true
+ *         type: integer
+ *         example: 1
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *       '422':
+ *         description: Id isn't an integer
+ *       '403':
+ *         description: Forbidden access
+ *       '404':
+ *         description: Resource not found
+ */
+ router.patch('/:id', idParamIsInteger, hasValidAuthorization, messagesController.update);
+
 // TODO: SWAGGER MODEL
 
 module.exports = router;

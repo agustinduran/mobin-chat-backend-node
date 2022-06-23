@@ -8,6 +8,12 @@ exports.getAllByChat = async (repository, idChat) => {
 
 exports.createMessage = async (repository, message) => {
     // TODO: NO HARDCODE. MAKE A CONST CLASS
-    client.del('/api/messages/');
+    // client.del('/api/messages/');
     return await repository.save(message);
+};
+
+exports.update = async (repository, idMessage) => {
+    // TODO: NO HARDCODE. MAKE A CONST CLASS
+    // client.del('/api/messages/');
+    return await repository.updateStatusToSeen(idMessage);
 };
