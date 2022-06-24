@@ -9,11 +9,11 @@ exports.getAll = async (req, res) => {
     const users = await usersService.getAll(usersRepository);
     try {
         // TODO: Use expiration
-        client.set(req.originalUrl, JSON.stringify({ success: true, users, from: "cache" }));
+        client.set(req.originalUrl, JSON.stringify({ success: true, data: users, from: "cache" }));
     } catch (err) {
         console.log(err);
     } finally {
-        res.status(200).json({ success: true, users, from: "database" });
+        res.status(200).json({ success: true, data: users, from: "database" });
     }
 };
 
@@ -23,11 +23,11 @@ exports.getById = async (req, res) => {
 
     if (userFinded) {
         try {
-            client.set(req.originalUrl, JSON.stringify({ success: true, user: userFinded, from: "cache" }));
+            client.set(req.originalUrl, JSON.stringify({ success: true, data: userFinded, from: "cache" }));
         } catch (err) {
             console.log(err);
         } finally {
-            return res.status(200).json({ success: true, user: userFinded, from: "database" });
+            return res.status(200).json({ success: true, data: userFinded, from: "database" });
         }
     } else {
         return res.status(404).send({ success: false, message: 'El recurso solicitado no existe o fue eliminado' })
@@ -40,11 +40,11 @@ exports.editById = async (req, res) => {
     // TODO: Edit action
     if (userFinded) {
         try {
-            client.set(req.originalUrl, JSON.stringify({ success: true, user: userFinded, from: "cache" }));
+            client.set(req.originalUrl, JSON.stringify({ success: true, data: userFinded, from: "cache" }));
         } catch (err) {
             console.log(err);
         } finally {
-            return res.status(200).json({ success: true, user: userFinded, from: "database" });
+            return res.status(200).json({ success: true, data: userFinded, from: "database" });
         }
     } else {
         return res.status(404).send({ success: false, message: 'El recurso solicitado no existe o fue eliminado' })

@@ -9,11 +9,11 @@ exports.getAll = async (req, res) => {
     const chats = await chatsService.getAll(chatsRepository);
     try {
         // TODO: Use expiration
-        client.set(req.originalUrl, JSON.stringify({ success: true, chats, from: "cache" }));
+        client.set(req.originalUrl, JSON.stringify({ success: true, data: chats, from: "cache" }));
     } catch (err) {
         console.log(err);
     } finally {
-        res.status(200).json({ success: true, chats, from: "database" });
+        res.status(200).json({ success: true, data: chats, from: "database" });
     }
 };
 
@@ -22,7 +22,7 @@ exports.getAllByIdUser = async (req, res) => {
     const idUser = Number.parseInt(req.params.id);
     try {
         const chats = await chatsService.getAllByIdUser(chatsRepository, idUser);
-        res.status(200).json({ success: true, chats, from: "database" });
+        res.status(200).json({ success: true, data: chats, from: "database" });
     } catch (err) {
         console.log(err);
         return res.status(500).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
@@ -35,11 +35,11 @@ exports.getById = async (req, res) => {
 
     if (chatFinded) {
         try {
-            client.set(req.originalUrl, JSON.stringify({ success: true, chat: chatFinded, from: "cache" }));
+            client.set(req.originalUrl, JSON.stringify({ success: true, data: chatFinded, from: "cache" }));
         } catch (err) {
             console.log(err);
         } finally {
-            return res.status(200).json({ success: true, chat: chatFinded, from: "database" });
+            return res.status(200).json({ success: true, data: chatFinded, from: "database" });
         }
     } else {
         return res.status(404).send({ success: false, message: 'El recurso solicitado no existe o fue eliminado' })
