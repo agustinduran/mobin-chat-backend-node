@@ -57,14 +57,14 @@ router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsAct
 
 /**
  * @swagger
- * /api/chats/{id}:
+ * /api/chats/user/{id}:
  *   get:
- *     summary: Get a chat
+ *     summary: Get all chats by an user
  *     tags: [Chat]
  *     parameters:
  *       - in: path
  *         name: id
- *         description: Chat id
+ *         description: User id
  *         required: true
  *         type: integer
  *         example: 1
@@ -119,4 +119,23 @@ router.post('/', hasValidAuthorization, verifyPermissionsActionOnOneChat, [
     hasValidRequest
 ], chatsController.create);
 
+
+/**
+ * @swagger
+ * definitions:
+ *   Chat:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       timestamp:
+ *         type: timestamp
+ *       id-user-sender:
+ *         type: integer
+ *       id-user-receiver:
+ *         type: integer
+ *       created-at:
+ *         type: date
+ *       updated-at:
+ *         type: date
+ */
 module.exports = router;

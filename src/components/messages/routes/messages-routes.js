@@ -132,6 +132,34 @@ router.post('/', hasValidAuthorization, [
  */
  router.patch('/:id', idParamIsInteger, hasValidAuthorization, messagesController.update);
 
-// TODO: SWAGGER MODEL
-
+/**
+ * @swagger
+ * definitions:
+ *   Message:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       message:
+ *         type: string
+ *       url:
+ *         type: string
+ *       is-image:
+ *         type: boolean
+ *       is-video:
+ *         type: boolean
+ *       status:
+ *         type: enum
+ *       timestamp:
+ *         type: timestamp
+ *       id-user-sender:
+ *         type: integer
+ *       id-user-receiver:
+ *         type: integer
+ *       id-chat:
+ *         type: integer
+ *       created-at:
+ *         type: date
+ *       updated-at:
+ *         type: date
+ */
 module.exports = router;
