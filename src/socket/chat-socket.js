@@ -8,6 +8,7 @@ module.exports = (io) => {
         socket.on('message', (message) => {
             console.log('message', message);
             chatSocket.emit(`message/${message.id_chat}`, message);
+            chatSocket.emit(`message/${message.id_user}`, message);
         });
 
         socket.on('writing', (data) => {
