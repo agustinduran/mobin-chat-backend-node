@@ -35,7 +35,7 @@ exports.update = async (chat) => {
 
 /** Return all chats by user with other important data, for example: the last message between both users, etc */ 
 // TODO: Change to Sequelize practices
-exports.getAllByUser = async (idUser) => {
+exports.getAllByIdUser = async (idUser) => {
     // TODO: Controlar que el chat pertenece a ese usuario
     const sql = `
         SELECT
@@ -49,8 +49,8 @@ exports.getAllByUser = async (idUser) => {
             u2.name AS name_user2,
             u2.surname AS surname_user2,
             u2.image AS image_user2,
-            (SELECT message FROM messages m WHERE m.id_chat = c.id ORDER BY m.timestamp DESC LIMIT 1) AS last_message
-            (SELECT timestamp FROM messages m WHERE m.id_chat = c.id ORDER BY m.timestamp DESC LIMIT 1) AS last_message_timestamp
+            (SELECT message FROM messages m WHERE m.id_chat = c.id ORDER BY m.timestamp DESC LIMIT 1) AS last_message,
+            (SELECT timestamp FROM messages m WHERE m.id_chat = c.id ORDER BY m.timestamp DESC LIMIT 1) AS last_message_timestamp,
             (SELECT COUNT(*) FROM messages m WHERE m.id_chat = c.id AND (m.status = 'SENDED' OR m.status = 'RECEIVED') AND m.id_user_receiver = $1) AS unread_messages
         FROM chats c
         INNER JOIN users u2 ON (u2.id = c.id_user_transmitter)

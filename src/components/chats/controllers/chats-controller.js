@@ -17,6 +17,18 @@ exports.getAll = async (req, res) => {
     }
 };
 
+exports.getAllByIdUser = async (req, res) => {
+    // TODO: PAGINATE
+    const idUser = Number.parseInt(req.params.id);
+    try {
+        const chats = await chatsService.getAllByIdUser(chatsRepository, idUser);
+        res.status(200).json({ success: true, chats, from: "database" });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ success: false, message: 'Error en el servidor, intente nuevamente más tarde' });
+    }
+};
+
 exports.getById = async (req, res) => {
     const id = Number.parseInt(req.params.id);
     const chatFinded = await chatsService.getChatById(chatsRepository, id);

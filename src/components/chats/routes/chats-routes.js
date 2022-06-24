@@ -57,6 +57,31 @@ router.get('/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsAct
 
 /**
  * @swagger
+ * /api/chats/{id}:
+ *   get:
+ *     summary: Get a chat
+ *     tags: [Chat]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Chat id
+ *         required: true
+ *         type: integer
+ *         example: 1
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *       '422':
+ *         description: Id isn't an integer
+ *       '403':
+ *         description: Forbidden access
+ *       '404':
+ *         description: Resource not found
+ */
+router.get('/user/:id', idParamIsInteger, hasValidAuthorization, verifyPermissionsActionOnOneChat, findInCache, chatsController.getAllByIdUser);
+
+/**
+ * @swagger
  * /api/chats:
  *   post:
  *     summary: Create a chat

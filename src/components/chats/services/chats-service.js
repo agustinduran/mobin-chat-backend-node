@@ -5,6 +5,11 @@ exports.getAll = async (repository) => {
     return chats;
 };
 
+exports.getAllByIdUser = async (repository, idUser) => {
+    const chats = await repository.getAllByIdUser(idUser);
+    return chats;
+};
+
 exports.getChatById = async (repository, id) => {
     const chat = await repository.getById(id);
     return chat;
